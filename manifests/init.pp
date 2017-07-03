@@ -8,8 +8,8 @@
 # @param [String] hostname Hostname used to generate the certificate for server and agent
 # 
 
-class puppet(
-             String $hostname
-             ) {
+class puppet5(
+  String $hostname
+  ) {
   # Do nothing right now ok
 }
