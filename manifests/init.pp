@@ -11,7 +11,7 @@
 class puppet5(
   String $certname
   ) {
-  
+
   include puppet5::oscheck
 
 }

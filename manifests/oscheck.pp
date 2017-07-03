@@ -12,7 +12,7 @@ class puppet5::oscheck {
 
   # Supported OS check
   case $::osfamily {
-    RedHat:{
+    'RedHat':{
       if $::operatingsystemmajrelease in ['7','6'] {
         # Do nothing
       } else {

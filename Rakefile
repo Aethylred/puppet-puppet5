@@ -3,38 +3,14 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
 
-exclude_paths = ["spec/**/*.pp", "vendor/**/*.pp", "modules/**/*.pp"]
+exclude_paths = ["spec/**/*", "vendor/**/*", "modules/**/*"]
 
 PuppetSyntax.exclude_paths = exclude_paths
-
-Rake::Task[:lint].clear
-PuppetLint::RakeTask.new :lint do |config|
-  # Pattern of files to ignore
-  config.ignore_paths = exclude_paths
-
-  # List of checks to disable
-  config.disable_checks = [
-    '140chars'
-  ]
-
-  # Should the task fail if there were any warnings, defaults to false
-  config.fail_on_warnings = true
-
-  # Print out the context for the problem, defaults to false
-  config.with_context = true
-
-  # Format string for puppet-lint's output (see the puppet-lint help output
-  # for details
-  config.log_format = "%{path} on line %{line} - %{check}:%{KIND}:%{message}"
-
-  # Compare module layout relative to the module root
-  # config.relative = true
-end
 
 desc 'Check for ruby syntax errors.'
 task :validate_ruby_syntax do
   ruby_parse_command = 'ruby -c'
-  Dir['spec/puppet5/**/*.rb'].each do |path|
+  Dir['spec/**/*.rb'].each do |path|
    sh "#{ruby_parse_command} #{path}"
   end
 end
