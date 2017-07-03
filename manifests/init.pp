@@ -1,4 +1,4 @@
-# Puppet class
+# puppet5 class
 # 
 # This class is used to install the Puppet 5 agent
 # 
@@ -11,5 +11,7 @@
 class puppet5(
   String $certname
   ) {
-  # Do nothing right now ok
+  
+  include puppet5::oscheck
+
 }
