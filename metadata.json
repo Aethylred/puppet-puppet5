@@ -1,0 +1,29 @@
+{
+     "name": "aethylred-puppet5",
+     "version": "0.1.0",
+     "author": "Aaron Hicks",
+     "license": "Apache-2.0",
+     "summary": "A Puppet 5 module to install and manage Puppet 5",
+     "source": "https://github.com/Aethylred/puppet-puppet5",
+     "project_page": "https://github.com/Aethylred/puppet-puppet5",
+     "issues_url": "https://github.com/Aethylred/puppet-puppet5/issues",
+     "tags": ["puppet", "puppetserver", "puppetdb", "puppet-agent", "hiera 5", "puppet 5"],
+     "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=5.0.0 < 6.0.0"
+    }
+   ],
+     "operatingsystem_support": [
+       {
+       "operatingsystem":"RedHat",
+       "operatingsystemrelease":[ "7" ]
+       },
+       {
+       "operatingsystem":"CentOS",
+       "operatingsystemrelease":[ "7" ]
+       }
+      ],
+    "dependencies": [
+    ]
+   }
