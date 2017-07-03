@@ -1,0 +1,13 @@
+puppet5::puppetdb: false
+puppet5::puppetdb_server: "%{::ipaddress}"
+puppet5::puppetdb_port: 8081
+puppet5::puppetdb_version: 'installed'
+
+puppet5::certname: "%{trusted.certname}"
+puppet5::version: 'installed'
+puppet5::autosign: false
+puppet5::java_args: '-Xms2g -Xmx2g -XX:MaxPermSize=256m'
+
+puppet5::agent_version: 'installed'
+
+puppet5::system_config_path: '/files/etc/sysconfig'

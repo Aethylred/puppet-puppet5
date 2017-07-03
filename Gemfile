@@ -9,6 +9,7 @@ gem "puppetlabs_spec_helper", "~> 2.2"
 
 gem 'rspec', '>= 3.4.4'
 gem 'rspec-puppet', '>= 2.1.0'
+gem 'rspec-puppet-facts', '>= 1.8.0'
 
 gem "beaker", "~> 3.17"
 gem "beaker-rspec", "~> 6.1"
