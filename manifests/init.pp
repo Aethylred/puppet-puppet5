@@ -1,6 +1,6 @@
 # Puppet class
 # 
-# This is the base class that can be used to install and manage all the Puppet5 things in this module
+# This class is used to install the Puppet 5 agent
 # 
 # @example Declaring the class
 #   include puppet
