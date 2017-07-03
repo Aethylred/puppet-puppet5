@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'puppet' do
+describe 'puppet5' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
