@@ -1,4 +1,4 @@
-require spec_helper
+require 'spec_helper'
 
 describe 'puppet' do
   on_supported_os.each do |os, facts|
