@@ -3,7 +3,7 @@ require 'rspec-puppet-facts'
 include RspecPuppetFacts
 
 RSpec.configure do |c|
-  c.hiera_config = "hiera.yaml"
+  c.hiera_config = "spec/hiera.yaml"
 
   c.before :each do
     # Ensure that we don't accidentally cache facts and environment

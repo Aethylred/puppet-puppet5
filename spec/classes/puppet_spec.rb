@@ -7,8 +7,8 @@ describe 'puppet5' do
         facts
       end
       # Initialise hiera
-      let(:hiera_config) { 'hiera.yaml' }
-      hiera = Hiera.new(:config => 'hiera.yaml')
+      let(:hiera_config) { 'spec/hiera.yaml' }
+      hiera = Hiera.new()
 
       it { is_expected.to compile.with_all_deps }
       it { should contain_class('puppet5::oscheck') }
