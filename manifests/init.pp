@@ -19,6 +19,7 @@ class puppet5(
   include puppet5::oscheck
 
   class {'puppet5::install':
+    ensure  => $ensure,
     package => $package,
     version => $version
   }

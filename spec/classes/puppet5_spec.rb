@@ -3,19 +3,19 @@ require 'spec_helper'
 describe 'puppet5' do
   package_details = {
     'redhat-6-x86_64' => {
-      :ensure  => '5.0.0-1.el6',
+      :version => '5.0.0-1.el6',
       :package => 'puppet-agent',
     },
     'redhat-7-x86_64' => {
-      :ensure => '5.0.0-1.el7',
+      :version=> '5.0.0-1.el7',
       :package => 'puppet-agent',
     },
     'centos-6-x86_64' => {
-      :ensure => '5.0.0-1.el6',
+      :version=> '5.0.0-1.el6',
       :package => 'puppet-agent',
     },
     'centos-7-x86_64' => {
-      :ensure => '5.0.0-1.el7',
+      :version=> '5.0.0-1.el7',
       :package => 'puppet-agent',
     },
   }
@@ -30,8 +30,9 @@ describe 'puppet5' do
       it { should contain_class('puppet5::oscheck') }
 
       context "with no paramters" do
-        it { should contain_class('puppet5_install').with(
-          'version' => package_details[os][:ensure],
+        it { should contain_class('puppet5::install').with(
+          'ensure'  => 'installed',
+          'version' => package_details[os][:version],
           'package' => package_details[os][:package],
         ) }
       end
