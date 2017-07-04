@@ -1,10 +1,10 @@
 require 'spec_helper_acceptance'
 
-describe 'puppetserver class' do
+describe 'puppet5 class' do
   context 'should work with no errors' do
-    it 'when configuring puppetserver without parameters' do
+    it 'when configuring puppet5 without parameters' do
       pp = <<-EOS
-        class { 'puppetserver': }
+        class { 'puppet5': }
       EOS
 
       apply_manifest(pp, :catch_failures => true) do |r|
@@ -18,17 +18,13 @@ describe 'puppetserver class' do
       end
     end
 
-    describe package('puppetserver') do
+    describe package('puppet-agent') do
       it { is_expected.to be_installed }
     end
 
-    describe service('puppetserver') do
+    describe service('puppet') do
       it { should be_enabled }
       it { should be_running }
-    end
-
-    describe port(8140) do
-      it { should be_listening }
     end
 
   end
