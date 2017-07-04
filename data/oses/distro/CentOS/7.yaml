@@ -1,6 +1,3 @@
 puppet5::version: '5.0.0-1.el7'
 puppet5::server_version: '5.0.0-1.el7'
 puppet5::puppetdb_version: '5.0.1-1.el7'
-puppet5::install::version: "%{lookup('puppet5::version')}"
-puppet5::install::server_version: "%{lookup('puppet5::server_version')}"
-puppet5::install::puppetdb_version: "%{lookup('puppet5::puppetdb_version')}"

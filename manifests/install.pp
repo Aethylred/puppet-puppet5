@@ -11,8 +11,8 @@
 # 
 
 class puppet5::install(
-  String $package,
-  String $version,
+  String $package = lookup('puppet5::package'),
+  String $version = lookup('puppet5::version'),
   Variant[Boolean, Enum['true', 'false', 'installed', 'absent']] $ensure = 'installed', # lint:ignore:quoted_booleans
 ) {
 

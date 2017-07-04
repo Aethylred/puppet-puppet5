@@ -3,6 +3,3 @@ puppet5::package: 'puppet-agent'
 puppet5::db_package: 'puppetdb'
 puppet5::db_termini_package: 'puppetdb-termini'
 puppet5::server_package: 'puppet-server'
-# Recycle variables for puppet5::install
-puppet5::install::package: "%{lookup('puppet5::package')}"
-
