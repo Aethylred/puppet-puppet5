@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'puppet5' do
+describe 'puppet5::install' do
   package_details = {
     'redhat-6-x86_64' => {
       :ensure  => '5.0.0-1.el6',
