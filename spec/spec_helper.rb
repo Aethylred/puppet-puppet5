@@ -45,19 +45,23 @@ RSpec.configure do |c|
 
     @install_directories = {
       :base          => '/etc/puppetlabs',
-      :code          => "/etc/puppetlabs/code",
-      :mcollective   => "/etc/puppetlabs/mcollective",
-      :puppet        => "/etc/puppetlabs/puppet",
-      :modules       => "/etc/puppetlabs/code/modules",
-      :environments  => "/etc/puppetlabs/code/environments",
-      :ssl           => "/etc/puppetlabs/puppet/ssl",
-      :cert_requests => "/etc/puppetlabs/puppet/ssl/certificate_requests",
-      :certs         => "/etc/puppetlabs/puppet/ssl/certs",
-      :private_certs => "/etc/puppetlabs/puppet/ssl/private",
-      :private_keys  => "/etc/puppetlabs/puppet/ssl/private_keys",
-      :public_keys   => "/etc/puppetlabs/puppet/ssl/public_keys",
-      :pxp_agent     => "/etc/puppetlabs/pxp-agent",
-      :pxp_modules   => "/etc/puppetlabs/pxp-agent/modules"
+      :code          => '/etc/puppetlabs/code',
+      :mcollective   => '/etc/puppetlabs/mcollective',
+      :puppet        => '/etc/puppetlabs/puppet',
+      :modules       => '/etc/puppetlabs/code/modules',
+      :environments  => '/etc/puppetlabs/code/environments',
+      :ssl           => '/etc/puppetlabs/puppet/ssl',
+      :cert_requests => '/etc/puppetlabs/puppet/ssl/certificate_requests',
+      :certs         => '/etc/puppetlabs/puppet/ssl/certs',
+      :private_certs => '/etc/puppetlabs/puppet/ssl/private',
+      :private_keys  => '/etc/puppetlabs/puppet/ssl/private_keys',
+      :public_keys   => '/etc/puppetlabs/puppet/ssl/public_keys',
+      :pxp_agent     => '/etc/puppetlabs/pxp-agent',
+      :pxp_modules   => '/etc/puppetlabs/pxp-agent/modules'
+    }
+
+    @config_files = {
+      :puppetconf => '/etc/puppetlabs/puppet/puppet.conf'
     }
   end
 end

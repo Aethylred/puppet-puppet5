@@ -4,6 +4,9 @@
 # Installing a puppet5 repo is required, however the puppet5::repos class is
 # not required as long as a repository is set up prior to calling this class
 # 
+# This class calls the install, config and service classes in sequence for a simplified
+# one class definition of the puppet-agent
+# 
 # @example Declaring the class
 #   include puppet5
 #   
