@@ -22,14 +22,26 @@ class puppet5(
 
   include puppet5::oscheck
 
-  class {'puppet5::install':
+  if $ensure == 'installed' {
+    $ensure_package = $version
+    $ensure_dir     = 'directory'
+    $ensure_file    = 'file'
+    $ensure_present = 'present'
+  } else {
+    $ensure_package = 'absent'
+    $ensure_dir     = 'absent'
+    $ensure_file    = 'absent'
+    $ensure_present = 'absent'
+  }
+
+  class {'puppet5::agent::install':
     ensure  => $ensure,
     package => $package,
     version => $version,
   }
 
-  class {'puppet5::config':
-    ensure  => $ensure,
+  class {'puppet5::agent::config':
+    ensure  => $ensure_present,
     require => Class['puppet5::install'],
   }
 

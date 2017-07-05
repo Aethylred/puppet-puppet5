@@ -1,4 +1,4 @@
-# puppet5::config class
+# puppet5::agent::config class
 # 
 # This class is used to configure the Puppet 5 agent
 # 
@@ -6,13 +6,13 @@
 #   include puppet5::config
 #
 
-class puppet5::config(
-  Variant[Boolean, Enum['true', 'false', 'installed', 'absent']] $ensure = 'installed', # lint:ignore:quoted_booleans                        
+class puppet5::agent::config(
+  Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans                        
 ) {
 
   include puppet5::oscheck
 
-  if $ensure == 'installed' {
+  if $ensure == 'present' {
     $ensure_dir     = 'directory'
     $ensure_file    = 'file'
     $ensure_present = 'present'

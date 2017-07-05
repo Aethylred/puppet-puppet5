@@ -11,10 +11,13 @@ describe 'puppet5' do
       it { should contain_class('puppet5::oscheck') }
 
       context "with no paramters" do
-        it { should contain_class('puppet5::install').with(
+        it { should contain_class('puppet5::agent::install').with(
           'ensure'  => 'installed',
           'version' => @package_details[os][:version],
           'package' => @package_details[os][:package],
+        ) }
+        it { should contain_class('puppet5::agent::config').with(
+          'ensure'  => 'present',
         ) }
       end
 
@@ -24,7 +27,7 @@ describe 'puppet5' do
             :package => 'puppet-alt'
           }
         end
-        it { should contain_class('puppet5::install').with(
+        it { should contain_class('puppet5::agent::install').with(
           'ensure'  => 'installed',
           'version' => @package_details[os][:version],
           'package' => 'puppet-alt',
@@ -37,7 +40,7 @@ describe 'puppet5' do
             :version => '12'
           }
         end
-        it { should contain_class('puppet5::install').with(
+        it { should contain_class('puppet5::agent::install').with(
           'ensure'  => 'installed',
           'version' => '12',
           'package' => @package_details[os][:package],
@@ -50,10 +53,13 @@ describe 'puppet5' do
             :ensure => 'absent'
           }
         end
-        it { should contain_class('puppet5::install').with(
+        it { should contain_class('puppet5::agent::install').with(
           'ensure'  => 'absent',
           'version' => @package_details[os][:version],
           'package' => @package_details[os][:package],
+        ) }
+        it { should contain_class('puppet5::agent::config').with(
+          'ensure'  => 'absent',
         ) }
       end
 

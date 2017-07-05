@@ -4,9 +4,9 @@
 # puppet5 wrapper class
 
 include puppet5::repos
-class { 'puppet5::install':
+class { 'puppet5::agent::install':
   require => Class['puppet5::repos']
 }
 class { 'puppet5::config':
-  require => Class['puppet5::repos']
+  require => Class['puppet5::agent::repos']
 }

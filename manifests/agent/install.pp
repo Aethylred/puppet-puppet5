@@ -1,4 +1,4 @@
-# puppet5::install class
+# puppet5::agent::install class
 # 
 # This class is used to install the Puppet 5 agent
 # Installing a puppet5 repo is required, however the puppet5::repos class is
@@ -12,7 +12,7 @@
 # @param [String] ensure Ensure if the package is `installed` or `absent`, the default is `installed`
 # 
 
-class puppet5::install(
+class puppet5::agent::install(
   String $package = lookup('puppet5::package'),
   String $version = lookup('puppet5::version'),
   Variant[Boolean, Enum['true', 'false', 'installed', 'absent']] $ensure = 'installed', # lint:ignore:quoted_booleans
@@ -45,6 +45,7 @@ class puppet5::install(
     mode   => '0755',
   }
 
+  # I think there's a better way to do this now using a createresources function or something
   $puppet5_directories.each |String $directory, Hash $attributes| {
     Resource[file] {
       $directory: * => $attributes;

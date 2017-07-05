@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'puppet5::config' do
+describe 'puppet5::agent::config' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
@@ -14,7 +14,7 @@ describe 'puppet5::config' do
 
       end
 
-      context "remove puppet with ensure => absent" do
+      context "remove puppet config with ensure => absent" do
         let :params do
           {
             :ensure => 'absent'
