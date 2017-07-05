@@ -22,12 +22,18 @@ class puppet5::config(
     $ensure_present = 'absent'
   }
 
-  file{'puppet.conf':
-    ensure => $ensure_file,
-    path   => lookup('puppet5::files[puppetconf][path]', String, 'first'),
+  concat{'puppet.conf':
+    ensure => $ensure_present,
+    path   => lookup('puppet5::files.puppetconf.path', String, 'First'),
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
+  }
+
+  concat::fragment{'puppet.conf_base':
+    target  => 'puppet.conf',
+    content => template('puppet/puppet.conf.base.erb'),
+    order   => '00',
   }
 
 }
