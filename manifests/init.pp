@@ -42,7 +42,7 @@ class puppet5(
 
   class {'puppet5::agent::config':
     ensure  => $ensure_present,
-    require => Class['puppet5::install'],
+    require => Class['puppet5::agent::install'],
   }
 
 }

@@ -11,7 +11,13 @@ describe 'puppet5::agent::config' do
       it { should contain_class('puppet5::oscheck') }
 
       context "with no paramters" do
-
+        it { should contain_file('puppet.conf').with(
+          'ensure'  => 'file',
+          'path'    => @config_files[:puppetconf],
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0644',
+        ) }
       end
 
       context "remove puppet config with ensure => absent" do
@@ -20,7 +26,9 @@ describe 'puppet5::agent::config' do
             :ensure => 'absent'
           }
         end
-
+        it { should contain_file('puppet.conf').with(
+          'ensure'  => 'absent',
+        ) }
       end
 
       context "when ensure is an incorrect value" do
