@@ -35,4 +35,18 @@ class puppet5::install(
     name   => $package,
   }
 
+  $puppet5_directories = lookup('puppet5::directories', Hash, 'hash')
+  $dir_defaults = {
+    ensure => $ensure_dir,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
+  $puppet5_directories.each |String $directory, Hash $attributes| {
+    Resource[file] {
+      $directory: * => $attributes;
+      default:    * => $dir_defaults;
+    }
+  }
 }
