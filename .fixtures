@@ -3,5 +3,8 @@ fixtures:
     concat:
       repo: "puppetlabs/concat"
       ref:  "1.1.0"
+    oncat:
+      repo: "puppetlabs/stdlib"
+      ref:  "4.17.1"
   symlinks:
     "puppet5": "#{source_dir}
