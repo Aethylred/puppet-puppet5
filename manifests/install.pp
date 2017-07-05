@@ -18,7 +18,7 @@ class puppet5::install(
 
   include puppet5::oscheck
 
-  if $ensure {
+  if $ensure == 'installed' {
     $ensure_package = $version
     $ensure_dir     = 'directory'
     $ensure_file    = 'file'

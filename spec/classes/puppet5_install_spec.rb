@@ -36,6 +36,53 @@ describe 'puppet5::install' do
         ) }
       end
 
+      context "when specifying a package" do
+        let :params do
+          {
+            :package => 'puppet-alt'
+          }
+        end
+        it { should contain_package('puppet-agent').with(
+          'ensure' => package_details[os][:version],
+          'name'   => 'puppet-alt',
+        ) }
+      end
+
+      context "when specifying a version" do
+        let :params do
+          {
+            :version => '12'
+          }
+        end
+        it { should contain_package('puppet-agent').with(
+          'ensure' => '12',
+          'name'   => package_details[os][:package],
+        ) }
+      end
+
+      context "remove puppet with ensure => absent" do
+        let :params do
+          {
+            :ensure => 'absent'
+          }
+        end
+        it { should contain_package('puppet-agent').with(
+          'ensure' => 'absent',
+        ) }
+      end
+
+      context "when ensure is an incorrect value" do
+                let :params do
+          {
+            :ensure => 'anything'
+          }
+        end
+        it { should raise_error(
+          Puppet::Error,
+          /\[Puppet5::Install\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'false', 'installed', 'true'\]/
+        ) }
+      end
+
     end
   end
 end
