@@ -22,3 +22,6 @@ gem "puppet-lint", "~> 2.2"
 gem "metadata-json-lint", "~> 1.2"
 
 gem "puppet-strings", "~> 0.4"
+
+# Coveralls.io coverage report
+gem 'coveralls', require: false
