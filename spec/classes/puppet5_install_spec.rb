@@ -1,25 +1,6 @@
 require 'spec_helper'
 
 describe 'puppet5::install' do
-  package_details = {
-    'redhat-6-x86_64' => {
-      :version => '5.0.0-1.el6',
-      :package => 'puppet-agent',
-    },
-    'redhat-7-x86_64' => {
-      :version => '5.0.0-1.el7',
-      :package => 'puppet-agent',
-    },
-    'centos-6-x86_64' => {
-      :version => '5.0.0-1.el6',
-      :package => 'puppet-agent',
-    },
-    'centos-7-x86_64' => {
-      :version => '5.0.0-1.el7',
-      :package => 'puppet-agent',
-    },
-  }
-
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
@@ -31,8 +12,106 @@ describe 'puppet5::install' do
 
       context "with no paramters" do
         it { should contain_package('puppet-agent').with(
-          'ensure' => package_details[os][:version],
-          'name'   => package_details[os][:package],
+          'ensure' => @package_details[os][:version],
+          'name'   => @package_details[os][:package],
+        ) }
+        it { should contain_file('base').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:base],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('cert_requests').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:cert_requests],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('certs').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:certs],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('code').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:code],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('environments').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:environments],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('mcollective').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:mcollective],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('modules').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:modules],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('private_certs').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:private_certs],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0750'
+        ) }
+        it { should contain_file('private_keys').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:private_keys],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0750'
+        ) }
+        it { should contain_file('public_keys').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:public_keys],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('puppet').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:puppet],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('pxp-agent').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:pxp_agent],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('pxp_modules').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:pxp_modules],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0755'
+        ) }
+        it { should contain_file('ssl').with(
+          'ensure' => 'directory',
+          'path'   => @install_directories[:ssl],
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0771'
         ) }
       end
 
@@ -43,7 +122,7 @@ describe 'puppet5::install' do
           }
         end
         it { should contain_package('puppet-agent').with(
-          'ensure' => package_details[os][:version],
+          'ensure' => @package_details[os][:version],
           'name'   => 'puppet-alt',
         ) }
       end
@@ -56,7 +135,7 @@ describe 'puppet5::install' do
         end
         it { should contain_package('puppet-agent').with(
           'ensure' => '12',
-          'name'   => package_details[os][:package],
+          'name'   => @package_details[os][:package],
         ) }
       end
 
@@ -67,6 +146,45 @@ describe 'puppet5::install' do
           }
         end
         it { should contain_package('puppet-agent').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('base').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('cert_requests').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('certs').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('code').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('environments').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('mcollective').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('modules').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('private_certs').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('private_keys').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('public_keys').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('pxp-agent').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('pxp_modules').with(
+          'ensure' => 'absent',
+        ) }
+        it { should contain_file('ssl').with(
           'ensure' => 'absent',
         ) }
       end

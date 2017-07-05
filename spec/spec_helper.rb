@@ -19,6 +19,43 @@ RSpec.configure do |c|
     if ENV['STRICT_VARIABLES'] == 'yes'
       Puppet.settings[:strict_variables]=true
     end
+
+    # Declare variable lookup tables for testing here, so they can be reused across tests
+    @package_details = {
+      'redhat-6-x86_64' => {
+        :version => '5.0.0-1.el6',
+        :package => 'puppet-agent',
+      },
+      'redhat-7-x86_64' => {
+        :version => '5.0.0-1.el7',
+        :package => 'puppet-agent',
+      },
+      'centos-6-x86_64' => {
+        :version => '5.0.0-1.el6',
+        :package => 'puppet-agent',
+      },
+      'centos-7-x86_64' => {
+        :version => '5.0.0-1.el7',
+        :package => 'puppet-agent',
+      },
+    }
+
+    @install_directories = {
+      :base          => '/etc/puppetlabs',
+      :code          => "/etc/puppetlabs/code",
+      :mcollective   => "/etc/puppetlabs/mcollective",
+      :puppet        => "/etc/puppetlabs/puppet",
+      :modules       => "/etc/puppetlabs/code/modules",
+      :environments  => "/etc/puppetlabs/code/environments",
+      :ssl           => "/etc/puppetlabs/puppet/ssl",
+      :cert_requests => "/etc/puppetlabs/puppet/ssl/certificate_requests",
+      :certs         => "/etc/puppetlabs/puppet/ssl/certs",
+      :private_certs => "/etc/puppetlabs/puppet/ssl/private",
+      :private_keys  => "/etc/puppetlabs/puppet/ssl/private_keys",
+      :public_keys   => "/etc/puppetlabs/puppet/ssl/public_keys",
+      :pxp_agent     => "/etc/puppetlabs/pxp-agent",
+      :pxp_modules   => "/etc/puppetlabs/pxp-agent/modules"
+    }
   end
 end
 
