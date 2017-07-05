@@ -47,4 +47,4 @@ puppet5::directories:
 
 puppet5::files:
   puppetconf:
-    path: "${lookup(puppet5::directories.puppet.path)/puppet.conf}"
+    path: "%{lookup(puppet5::directories.puppet.path)/puppet.conf}"
