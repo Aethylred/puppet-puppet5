@@ -5,6 +5,6 @@
 ![License](https://img.shields.io/badge/license-Apache%202-blue.svg)
 
 
-A Puppet5 module to install and manage Puppet5
+A Puppet module to install and manage Puppet v5.x
 
-Many things are defined in Hiera that are not controlled by parameters. Thes can be over-ridden in Hiera.
+Many things are defined in Hiera that are not controlled by parameters. These can be over-ridden in Hiera.

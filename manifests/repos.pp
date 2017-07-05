@@ -5,8 +5,7 @@
 # @example Declaring the class
 #   include puppet5::repos
 #   
-# @param [Boolean] if true the Puppet5 source repository will also be installed
-# 
+# @param [Boolean] sources If true the Puppet5 source repository will also be installed
 
 class puppet5::repos (
   Boolean $sources = false

@@ -7,8 +7,9 @@
 # @example Declaring the class
 #   include puppet5
 #   
-# @param [String] certname The hostname used to generate the certificate for server and agent
-# 
+# @param [String] package The package to be installed
+# @param [String] version The version of the package to be installed
+# @param [String] ensure Ensure if the package is `installed` or `absent`, the default is `installed`
 
 class puppet5(
   String $package,
