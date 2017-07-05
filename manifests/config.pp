@@ -23,11 +23,12 @@ class puppet5::config(
   }
 
   file{'puppet.conf':
-    ensure => $ensure_file,
-    path   => lookup('puppet5::files[puppetconf][path]', String, 'first'),
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    ensure  => $ensure_file,
+    path    => lookup('puppet5::files.puppetconf.path', String, 'first'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('puppet5/puppet.conf.erb')
   }
 
 }

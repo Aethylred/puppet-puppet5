@@ -25,7 +25,12 @@ class puppet5(
   class {'puppet5::install':
     ensure  => $ensure,
     package => $package,
-    version => $version
+    version => $version,
+  }
+
+  class {'puppet5::config':
+    ensure  => $ensure,
+    require => Class['puppet5::install'],
   }
 
 }
