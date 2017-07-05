@@ -1,0 +1,31 @@
+# This file is managed by Puppet, changes may be overwritten
+# These settings are set with the puppet5::config class
+#
+# This file can be used to override the default puppet settings.
+# See the following links for more details on what settings are available:
+# - https://docs.puppetlabs.com/puppet/latest/reference/config_important_settings.html
+# - https://docs.puppetlabs.com/puppet/latest/reference/config_about_settings.html
+# - https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html
+# - https://docs.puppetlabs.com/puppet/latest/reference/configuration.html
+[main]
+  logdir        = <%= @log_dir %>
+  vardir        = <%= scope.lookupvar('::puppet::params::var_dir') %>
+  ssldir        = <%= @ssl_dir %>
+  rundir        = <%= scope.lookupvar('::puppet::params::run_dir') %>
+  factpath      = <%= @factpath %>
+  <%- if @module_paths -%>
+  # Setting modulepath is depreciated since version 3.6.0
+  modulepath    = <%= @modulepath %>
+  <%- end -%>
+  <%- if @templatedir -%>
+  # Setting templatedir is depreciated since version 3.6.0
+  templatedir   = <%= @templatedir %>
+  <%- end -%>
+  <%- if @server -%>
+  server        = <%= @server %>
+  <%- else -%>
+  server        = puppet
+  <%- end -%>
+  <%- if @dns_alt_names -%>
+  dns_alt_names = <%= @dns_alt_names_str %>
+  <%- end -%>
