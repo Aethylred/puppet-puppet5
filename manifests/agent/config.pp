@@ -5,6 +5,8 @@
 # @example Declaring the class
 #   include puppet5::config
 #
+# NOTE: Spaces are stripped from paths when they substituted into puppet.conf
+#       What kind of monster uses spaces in paths?
 
 class puppet5::agent::config(
   Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans

@@ -10,7 +10,7 @@
 <%- if @basemodulepath -%>
 [main]
   <%- if @basemodulepath -%>
-  basemodulepath = <%= @basemodulepath %>
+  basemodulepath = <%= @basemodulepath.gsub(/\s+/, "") %>
   <%- end -%>
 <%- end -%>
 
