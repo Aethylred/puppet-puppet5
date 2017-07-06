@@ -37,7 +37,6 @@ class puppet5::agent::install(
     name   => $package,
   }
 
-  $puppet5_directories = lookup('puppet5::directories', Hash, 'hash')
   $dir_defaults = {
     ensure => $ensure_dir,
     owner  => 'root',
@@ -45,11 +44,5 @@ class puppet5::agent::install(
     mode   => '0755',
   }
 
-  # I think there's a better way to do this now using a createresources function or something
-  $puppet5_directories.each |String $directory, Hash $attributes| {
-    Resource[file] {
-      $directory: * => $attributes;
-      default:    * => $dir_defaults;
-    }
-  }
+  create_resources(file, lookup('puppet5::directories', Hash, 'hash'), $dir_defaults)
 }
