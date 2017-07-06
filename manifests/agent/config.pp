@@ -7,7 +7,8 @@
 #
 
 class puppet5::agent::config(
-  Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans                        
+  Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans
+  Array[String] $basemodulepaths = [],
 ) {
 
   include puppet5::oscheck
@@ -20,6 +21,23 @@ class puppet5::agent::config(
     $ensure_dir     = 'absent'
     $ensure_file    = 'absent'
     $ensure_present = 'absent'
+  }
+
+# Turn the array of basemodulepaths to a basemodulepath string
+# basemodule path is used in the puppet.conf template
+  if $basemodulepaths != [] {
+    case $::osfamily{
+      'Windows':{
+        # We don't support windows yet, but...
+        $basemodulepath = join($basemodulepaths, ';')
+      }
+      default:{
+        $basemodulepath = join($basemodulepaths, ':')
+      }
+    }
+  } else {
+    # Just making this explicit
+    $basemodulepath = undef
   }
 
   file{'puppet.conf':

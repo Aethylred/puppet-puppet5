@@ -8,6 +8,11 @@
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html
 # - https://docs.puppetlabs.com/puppet/latest/reference/configuration.html
 [main]
+<%- if @basemodulepath -%>
+  basemodulepath = <%= @basemodulepath %>
+<%- end -%>
+
+# Entries beyond this line are remnans of a previous module
   logdir        = <%= @log_dir %>
   vardir        = <%= scope.lookupvar('::puppet::params::var_dir') %>
   ssldir        = <%= @ssl_dir %>

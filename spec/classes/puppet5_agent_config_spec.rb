@@ -18,6 +18,20 @@ describe 'puppet5::agent::config' do
           'group'   => 'root',
           'mode'    => '0644',
         ) }
+        it { should contain_file('puppet.conf').without_content(
+          %r{^  basemodulepath = }
+        )}
+      end
+
+      context "when specifying a basemodulepath" do
+        let :params do
+          {
+            :basemodulepath => ['/path/to/basemodule','/another/path/to/basemodule']
+          }
+        end
+        it { should contain_file('puppet.conf').with_content(
+          %r{^  basemodulepath = /path/to/basemodule:/another/path/to/basemodule$}
+        )}
       end
 
       context "remove puppet config with ensure => absent" do
