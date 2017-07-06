@@ -23,18 +23,20 @@ class puppet5::agent::config(
     $ensure_present = 'absent'
   }
 
+  $path_string_format = {
+    Array => {
+      format         => '% a',
+      separator      => ':',
+      string_formats => {
+        String => '%s'
+      }
+    }
+  }
+
 # Turn the array of basemodulepaths to a basemodulepath string
 # basemodule path is used in the puppet.conf template
   if $basemodulepaths != [] {
-    case $::osfamily{
-      'Windows':{
-        # We don't support windows yet, but...
-        $basemodulepath = join($basemodulepaths, ';')
-      }
-      default:{
-        $basemodulepath = join($basemodulepaths, ':')
-      }
-    }
+    $basemodulepath = String($basemodulepaths, $path_string_format)
   } else {
     # Just making this explicit
     $basemodulepath = undef
