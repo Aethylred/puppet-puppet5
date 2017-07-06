@@ -19,6 +19,9 @@ describe 'puppet5::agent::config' do
           'mode'    => '0644',
         ) }
         it { should contain_file('puppet.conf').without_content(
+          %r{^\[main\]$}
+        )}
+        it { should contain_file('puppet.conf').without_content(
           %r{^  basemodulepath = }
         )}
       end
@@ -26,9 +29,12 @@ describe 'puppet5::agent::config' do
       context "when specifying a basemodulepath" do
         let :params do
           {
-            :basemodulepath => ['/path/to/basemodule','/another/path/to/basemodule']
+            :basemodulepaths => ['/path/to/basemodule','/another/path/to/basemodule']
           }
         end
+        it { should contain_file('puppet.conf').with_content(
+          %r{^\[main\]$}
+        )}
         it { should contain_file('puppet.conf').with_content(
           %r{^  basemodulepath = /path/to/basemodule:/another/path/to/basemodule$}
         )}

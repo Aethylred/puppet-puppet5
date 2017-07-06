@@ -7,9 +7,11 @@
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_about_settings.html
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html
 # - https://docs.puppetlabs.com/puppet/latest/reference/configuration.html
-[main]
 <%- if @basemodulepath -%>
+[main]
+  <%- if @basemodulepath -%>
   basemodulepath = <%= @basemodulepath %>
+  <%- end -%>
 <%- end -%>
 
 # Entries beyond this line are remnans of a previous module
