@@ -7,10 +7,23 @@
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_about_settings.html
 # - https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html
 # - https://docs.puppetlabs.com/puppet/latest/reference/configuration.html
-<%- if @basemodulepath -%>
+<%- if @basemodulepath and
+    @environment.empty? and
+    @runinterval.empty? and
+    @server.empty?
+-%>
 [main]
   <%- if @basemodulepath -%>
   basemodulepath = <%= @basemodulepath.gsub(/\s+/, "") %>
+  <%- end -%>
+  <%- unless @environment.empty? -%>
+  environment = <%= @environment %>
+  <%- end -%>
+  <%- unless @runinterval.empty? -%>
+  runinterval = <%= @runinterval %>
+  <%- end -%>
+  <%- unless @server -%>
+  server = <%= @server %>
   <%- end -%>
 <%- end -%>
 

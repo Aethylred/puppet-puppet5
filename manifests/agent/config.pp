@@ -11,6 +11,9 @@
 class puppet5::agent::config(
   Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans
   Array[String] $basemodulepaths = [],
+  String $server      = '',
+  String $environment = '',
+  String $runinterval = ''
 ) {
 
   include puppet5::oscheck
@@ -35,8 +38,8 @@ class puppet5::agent::config(
     }
   }
 
-# Turn the array of basemodulepaths to a basemodulepath string
-# basemodule path is used in the puppet.conf template
+  # Turn the array of basemodulepaths to a basemodulepath string
+  # basemodule path is used in the puppet.conf template
   if $basemodulepaths != [] {
     $basemodulepath = String($basemodulepaths, $path_string_format)
   } else {
