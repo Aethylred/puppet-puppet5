@@ -8,11 +8,7 @@
 # NOTE: Spaces are stripped from paths when they substituted into puppet.conf
 #       What kind of monster uses spaces in paths?
 #       
-# @param [String] ensure If set to 'present' puppet.conf is deployed, if 'absent' it is removed. Default 'installed'
-# @param [String] server Sets the FQDN of a puppet server or puppet master. Default is undefined.
-# @param [String] environment  Sets the puppet environment. Default is undefined.
-# @param [String] runinterval Sets how often the puppet agent runs. By default the puppet agent will run every 30m
-# @param [Array[String]] basemodulepaths An array of paths used to set the basemoduelpath setting that lists the directories where puppet checks for modules.
+# @param [String] ensure If set to 'enabled' the puppet-agent service runs at boot.
 
 class puppet5::agent::service(
   Variant[Boolean, Enum['enabled', 'running', 'stopped', 'disabled', 'absent']] $ensure = 'enabled',

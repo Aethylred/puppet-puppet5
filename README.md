@@ -114,6 +114,10 @@ This class manages the state of the `puppet-agent` service.
 
 ### Parameters
 
+#### [String] ensure
+
+If set to 'enabled' the `puppet-agent` service runs at boot.
+
 ## `puppet5::oscheck`
 
 This internal class has no paramters. Used by other classes to check if the `puppet5` module is being used on a supported operating system.
