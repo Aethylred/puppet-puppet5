@@ -18,6 +18,8 @@ class puppet5::agent::service(
   Variant[Boolean, Enum['enabled', 'running', 'stopped', 'disabled', 'absent']] $ensure = 'enabled',
 ) {
 
+  include puppet5::oscheck
+
   case $ensure {
     true, 'enabled', 'running': {
       $ensure_service = 'enabled'
@@ -50,8 +52,8 @@ class puppet5::agent::service(
   }
 
   service{'puppet-agent':
-    ensure  => $ensure_service,
-    enabled => $service_enabled,
+    ensure => $ensure_service,
+    enable => $service_enabled,
   }
 
 }
