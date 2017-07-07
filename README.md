@@ -1,9 +1,15 @@
 # puppet-puppet5
 
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+![License](https://img.shields.io/badge/license-Apache%202-blue.svg)
+
 [![Build Status](https://travis-ci.org/Aethylred/puppet-puppet5.svg?branch=master)](https://travis-ci.org/Aethylred/puppet-puppet5)
 [![Coverage Status](https://coveralls.io/repos/github/Aethylred/puppet-puppet5/badge.svg?branch=master)](https://coveralls.io/github/Aethylred/puppet-puppet5?branch=master)
-![License](https://img.shields.io/badge/license-Apache%202-blue.svg)
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![Dependency Status](https://gemnasium.com/badges/github.com/Aethylred/puppet-puppet5.svg)](https://gemnasium.com/github.com/Aethylred/puppet-puppet5)
+
+[![Puppet Forge Version](http://img.shields.io/puppetforge/v/Aethylred/puppet5.svg)](https://forge.puppet.com/Aethylred/puppet5)
+[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/Aethylred/puppet5.svg)](https://forge.puppet.com/Aethylred/puppet5)
+[![Puppet Forge Endorsement](https://img.shields.io/puppetforge/e/Aethylred/puppet5.svg)](https://forge.puppet.com/Aethylred/puppet5)
 
 # Introduction
 A Puppet module to install and manage Puppet v5.x
