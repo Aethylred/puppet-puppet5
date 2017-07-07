@@ -20,7 +20,7 @@ describe 'puppet5' do
           'ensure'  => 'present',
         ) }
         it { should contain_class('puppet5::agent::service').with(
-          'ensure' => 'enabled',
+          'ensure' => 'running',
         )}
       end
 
@@ -65,7 +65,7 @@ describe 'puppet5' do
           'ensure'  => 'absent',
         ) }
         it { should contain_class('puppet5::agent::service').with(
-          'ensure' => 'absent',
+          'ensure' => 'stopped',
         )}
       end
 
@@ -84,12 +84,12 @@ describe 'puppet5' do
       context "when service is an incorrect value" do
         let :params do
           {
-            :ensure => 'anything'
+            :service => 'anything'
           }
         end
         it { should raise_error(
           Puppet::Error,
-          /\[Puppet5\]: parameter 'service' expects a value of type Boolean or Enum\['enabled', 'running', 'stopped', 'disabled', 'absent'\]/
+          /\[Puppet5\]: parameter 'service' expects a value of type Boolean or Enum\['running', 'stopped'\]/
         ) }
       end
 

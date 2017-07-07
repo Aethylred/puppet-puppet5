@@ -11,20 +11,18 @@
 # @param [String] ensure If set to 'enabled' the puppet-agent service runs at boot.
 
 class puppet5::agent::service(
-  Variant[Boolean, Enum['enabled', 'running', 'stopped', 'disabled', 'absent']] $ensure = 'enabled',
+  Variant[Boolean, Enum['running', 'stopped']] $ensure = 'running',
 ) {
 
   include puppet5::oscheck
 
   case $ensure {
-    true, 'enabled', 'running': {
-      $ensure_service = 'enabled'
-      $service_enabled = true
+    true, 'running': {
+      $service_enable = true
       $ensure_file = 'file'
     }
     default: {
-      $ensure_service = 'absent'
-      $service_enabled = false
+      $service_enable = false
       $ensure_file = 'absent'
     }
   }
@@ -34,6 +32,7 @@ class puppet5::agent::service(
       # Use systemd
       file{'puppet_systemd_unit':
         ensure  => $ensure_file,
+        path    => lookup('puppet5::service::systemd_unit'),
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
@@ -48,8 +47,8 @@ class puppet5::agent::service(
   }
 
   service{'puppet-agent':
-    ensure => $ensure_service,
-    enable => $service_enabled,
+    ensure => $ensure,
+    enable => $service_enable,
   }
 
 }

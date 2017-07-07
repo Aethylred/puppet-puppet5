@@ -133,6 +133,8 @@ Many things are defined in Hiera that are not controlled by parameters. These ca
 
 # To Do
 
+This module is incomplete, however as it already has some functionality around configuring the `puppet-agent` it's suitable for release.
+
 The following software and services are still to be done:
 
 ## Missing resources

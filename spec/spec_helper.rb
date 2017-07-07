@@ -63,6 +63,10 @@ RSpec.configure do |c|
     @config_files = {
       :puppetconf => '/etc/puppetlabs/puppet/puppet.conf'
     }
+
+    @service_files = {
+      :systemd_service_unit => '/usr/lib/systemd/system/puppet.service'
+    }
   end
 end
 

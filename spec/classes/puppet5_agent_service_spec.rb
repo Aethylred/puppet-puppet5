@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'puppet5' do
+describe 'puppet5::agent::service' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
@@ -15,6 +15,7 @@ describe 'puppet5' do
         when '7'
           it { should contain_file('puppet_systemd_unit').with(
             'ensure'  => 'file',
+            'path'    => @service_files[:systemd_service_unit],
             'owner'   => 'root',
             'group'   => 'root',
             'mode'    => '0644',
@@ -24,20 +25,20 @@ describe 'puppet5' do
           it { should_not contain_file('puppet_systemd_unit') }
         end
         it { should contain_service('puppet-agent').with(
-          'ensure'  => 'enabled',
-          'enabled' => true,
+          'ensure' => 'running',
+          'enable' => true,
         )}
       end
 
-      context "when ensure is disabled" do
+      context "when ensure is stopped" do
         let :params do
           {
-            :ensure => 'disabled'
+            :ensure => 'stopped'
           }
         end
         it { should contain_service('puppet-agent').with(
-          'ensure'  => 'disabled',
-          'enabled' => false,
+          'ensure' => 'stopped',
+          'enable' => false,
         )}
       end
 
@@ -49,7 +50,7 @@ describe 'puppet5' do
         end
         it { should raise_error(
           Puppet::Error,
-          /\[Puppet5\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'installed'\]/
+          /\[Puppet5::Agent::Service\]: parameter 'ensure' expects a value of type Boolean or Enum\['running', 'stopped'\]/
         ) }
       end
 

@@ -19,7 +19,7 @@ class puppet5(
   String $package,
   String $version,
   Variant[Boolean, Enum['installed', 'absent']] $ensure = 'installed',
-  Variant[Boolean, Enum['enabled', 'running', 'stopped', 'disabled', 'absent']] $service = 'enabled',
+  Variant[Boolean, Enum['running', 'stopped']] $service = 'running',
 ) {
 
   include puppet5::oscheck
@@ -34,7 +34,7 @@ class puppet5(
     }
     default: {
       $ensure_package  = 'absent'
-      $ensrure_service = 'absent'
+      $ensure_service  = 'stopped'
       $ensure_dir      = 'absent'
       $ensure_file     = 'absent'
       $ensure_present  = 'absent'
