@@ -24,6 +24,15 @@ describe 'puppet5::agent::config' do
         it { should contain_file('puppet.conf').without_content(
           %r{^  basemodulepath = }
         )}
+        it { should contain_file('puppet.conf').without_content(
+          %r{^  environment = }
+        )}
+        it { should contain_file('puppet.conf').without_content(
+          %r{^  runinterval = }
+        )}
+        it { should contain_file('puppet.conf').without_content(
+          %r{^  server = }
+        )}
       end
 
       context "when specifying a basemodulepath" do
@@ -37,6 +46,48 @@ describe 'puppet5::agent::config' do
         )}
         it { should contain_file('puppet.conf').with_content(
           %r{^  basemodulepath = /path/to/basemodule:/another/path/to/basemodule$}
+        )}
+      end
+
+      context "when specifying an environment" do
+        let :params do
+          {
+            :environment => 'test'
+          }
+        end
+        it { should contain_file('puppet.conf').with_content(
+          %r{^\[main\]$}
+        )}
+        it { should contain_file('puppet.conf').with_content(
+          %r{^  environment = test$}
+        )}
+      end
+
+      context "when specifying runinterval" do
+        let :params do
+          {
+            :runinterval => '1h'
+          }
+        end
+        it { should contain_file('puppet.conf').with_content(
+          %r{^\[main\]$}
+        )}
+        it { should contain_file('puppet.conf').with_content(
+          %r{^  runinterval = 1h$}
+        )}
+      end
+
+      context "when specifying a puppet server" do
+        let :params do
+          {
+            :server => 'puppet.example.org'
+          }
+        end
+        it { should contain_file('puppet.conf').with_content(
+          %r{^\[main\]$}
+        )}
+        it { should contain_file('puppet.conf').with_content(
+          %r{^  server = puppet.example.org$}
         )}
       end
 
