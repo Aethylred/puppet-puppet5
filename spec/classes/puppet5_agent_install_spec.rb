@@ -197,7 +197,7 @@ describe 'puppet5::agent::install' do
         end
         it { should raise_error(
           Puppet::Error,
-          /\[Puppet5::Agent::Install\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'false', 'installed', 'true'\]/
+          /\[Puppet5::Agent::Install\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'installed'\]/
         ) }
       end
 

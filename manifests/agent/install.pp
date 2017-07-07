@@ -15,21 +15,22 @@
 class puppet5::agent::install(
   String $package = lookup('puppet5::package'),
   String $version = lookup('puppet5::version'),
-  Variant[Boolean, Enum['true', 'false', 'installed', 'absent']] $ensure = 'installed', # lint:ignore:quoted_booleans
+  Variant[Boolean, Enum['installed', 'absent']] $ensure = 'installed',
 ) {
 
   include puppet5::oscheck
 
-  if $ensure == 'installed' {
-    $ensure_package = $version
-    $ensure_dir     = 'directory'
-    $ensure_file    = 'file'
-    $ensure_present = 'present'
-  } else {
-    $ensure_package = 'absent'
-    $ensure_dir     = 'absent'
-    $ensure_file    = 'absent'
-    $ensure_present = 'absent'
+  case $ensure {
+    true, 'installed': {
+      $ensure_package = $version
+      $ensure_dir     = 'directory'
+      $ensure_present = 'present'
+    }
+    default: {
+      $ensure_package = 'absent'
+      $ensure_dir     = 'absent'
+      $ensure_present = 'absent'
+    }
   }
 
   package{'puppet-agent':

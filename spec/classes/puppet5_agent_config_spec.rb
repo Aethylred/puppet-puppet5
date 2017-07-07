@@ -110,7 +110,7 @@ describe 'puppet5::agent::config' do
         end
         it { should raise_error(
           Puppet::Error,
-          /\[Puppet5::Agent::Config\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'false', 'present', 'true'\]/
+          /\[Puppet5::Agent::Config\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'present'\]/
         ) }
       end
     end

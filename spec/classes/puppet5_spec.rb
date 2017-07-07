@@ -71,7 +71,7 @@ describe 'puppet5' do
         end
         it { should raise_error(
           Puppet::Error,
-          /\[Puppet5\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'false', 'installed', 'true'\]/
+          /\[Puppet5\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'installed'\]/
         ) }
       end
     end

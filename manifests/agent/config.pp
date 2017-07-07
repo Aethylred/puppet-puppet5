@@ -15,7 +15,7 @@
 # @param [Array[String]] basemodulepaths An array of paths used to set the basemoduelpath setting that lists the directories where puppet checks for modules.
 
 class puppet5::agent::config(
-  Variant[Boolean, Enum['true', 'false', 'present', 'absent']] $ensure = 'present', # lint:ignore:quoted_booleans
+  Variant[Boolean, Enum['present', 'absent']] $ensure = 'present',
   Array[String] $basemodulepaths = [],
   String $server      = '',
   String $environment = '',
@@ -24,14 +24,13 @@ class puppet5::agent::config(
 
   include puppet5::oscheck
 
-  if $ensure == 'present' {
-    $ensure_dir     = 'directory'
-    $ensure_file    = 'file'
-    $ensure_present = 'present'
-  } else {
-    $ensure_dir     = 'absent'
-    $ensure_file    = 'absent'
-    $ensure_present = 'absent'
+  case $ensure {
+    true, 'present': {
+      $ensure_file    = 'file'
+    }
+    default: {
+      $ensure_file    = 'absent'
+    }
   }
 
   $path_string_format = {
