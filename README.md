@@ -19,7 +19,7 @@ This module currently installs and configures the following Puppet software and 
 
 # Bootstrap
 
-This module is written to run on Puppet 5.x, many operating system disributions do not have this package available in their standard package repostitories. The {{bootstrap}} directory contains a collection of bash scripts that will add the Puppetlabs Puppet 5 repositories, install the `puppet-agent` package, install Rubygems, and finally install `librarian-puppet`.
+This module is written to run on Puppet 5.x, many operating system disributions do not have this package available in their standard package repostitories. The `bootstrap` directory contains a collection of bash scripts that will add the Puppetlabs Puppet 5 repositories, install the `puppet-agent` package, install Rubygems, and finally install `librarian-puppet`.
 
 These scripts will need to be run as an administrator, and often they require re-logging to update the bash environment and paths after installation.
 
@@ -28,8 +28,8 @@ Once this bootstrap is completed the module and test scripts should all work.
 ## Bootstrapping process
 
 1. Login as root
-1. Make the directory {{/etc/puppetlabs/code/modules}}:
-1. Clone this repository to {{/etc/puppetlabs/code/modules/puppet5}}: ```shell
+1. Make the directory `/etc/puppetlabs/code/modules`:
+1. Clone this repository to `/etc/puppetlabs/code/modules/puppet5`: ```shell
 $ git clone https://github.com/Aethylred/puppet-puppet5.git /etc/puppetlabs/code/modules/puppet5
 ```
 1. Run the bootstrap script appropriate for your OS and distribution: ```shell
