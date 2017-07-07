@@ -19,6 +19,9 @@ describe 'puppet5' do
         it { should contain_class('puppet5::agent::config').with(
           'ensure'  => 'present',
         ) }
+        it { should contain_class('puppet5::agent::service').with(
+          'ensure' => 'enabled',
+        )}
       end
 
       context "when specifying a package" do
@@ -61,6 +64,9 @@ describe 'puppet5' do
         it { should contain_class('puppet5::agent::config').with(
           'ensure'  => 'absent',
         ) }
+        it { should contain_class('puppet5::agent::service').with(
+          'ensure' => 'absent',
+        )}
       end
 
       context "when ensure is an incorrect value" do
@@ -74,6 +80,19 @@ describe 'puppet5' do
           /\[Puppet5\]: parameter 'ensure' expects a value of type Boolean or Enum\['absent', 'installed'\]/
         ) }
       end
+
+      context "when service is an incorrect value" do
+        let :params do
+          {
+            :ensure => 'anything'
+          }
+        end
+        it { should raise_error(
+          Puppet::Error,
+          /\[Puppet5\]: parameter 'service' expects a value of type Boolean or Enum\['enabled', 'running', 'stopped', 'disabled', 'absent'\]/
+        ) }
+      end
+
     end
   end
 end

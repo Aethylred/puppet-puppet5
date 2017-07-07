@@ -13,11 +13,13 @@
 # @param [String] package The package to be installed
 # @param [String] version The version of the package to be installed
 # @param [String] ensure Ensure if the package is `installed` or `absent`, the default is `installed`
+# @param [String] service Controls the puppet-agent service, the default is `enabled`
 
 class puppet5(
   String $package,
   String $version,
   Variant[Boolean, Enum['installed', 'absent']] $ensure = 'installed',
+  Variant[Boolean, Enum['enabled', 'running', 'stopped', 'disabled', 'absent']] $service = 'enabled',
 ) {
 
   include puppet5::oscheck
@@ -28,12 +30,14 @@ class puppet5(
       $ensure_dir     = 'directory'
       $ensure_file    = 'file'
       $ensure_present = 'present'
+      $ensure_service = $service
     }
     default: {
-      $ensure_package = 'absent'
-      $ensure_dir     = 'absent'
-      $ensure_file    = 'absent'
-      $ensure_present = 'absent'
+      $ensure_package  = 'absent'
+      $ensrure_service = 'absent'
+      $ensure_dir      = 'absent'
+      $ensure_file     = 'absent'
+      $ensure_present  = 'absent'
     }
   }
 
@@ -46,6 +50,10 @@ class puppet5(
   class {'puppet5::agent::config':
     ensure  => $ensure_present,
     require => Class['puppet5::agent::install'],
+  }
+
+  class {'puppet5::agent::service':
+    ensure => $ensure_service,
   }
 
 }

@@ -7,6 +7,9 @@ include puppet5::repos
 class { 'puppet5::agent::install':
   require => Class['puppet5::repos']
 }
-class { 'puppet5::config':
+class { 'puppet5::agent::config':
   require => Class['puppet5::agent::repos']
+}
+class { 'puppet5::agent::service':
+  require => Class['puppet5::agent::config']
 }
