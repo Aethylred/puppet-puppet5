@@ -19,9 +19,9 @@ gem "serverspec", "~> 2.39"
 
 gem "puppet-syntax", "~> 2.4"
 gem "puppet-lint", "~> 2.2"
-gem "metadata-json-lint", "~> 1.2"
+gem "metadata-json-lint", "~> 2.0.1"
 
-gem "puppet-strings", "~> 0.4"
+gem "puppet-strings", "~> 1.1.0"
 
 # Coveralls.io coverage report
 gem 'coveralls', require: false
