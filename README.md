@@ -25,22 +25,30 @@ These scripts will need to be run as an administrator, and often they require re
 
 Once this bootstrap is completed the module and test scripts should all work.
 
-## Bootstrapping process
+## Bootstrapping Process
 
 1. Login as root
-1. Make the directory `/etc/puppetlabs/code/modules`:
-1. Clone this repository to `/etc/puppetlabs/code/modules/puppet5`: ```shell
-$ git clone https://github.com/Aethylred/puppet-puppet5.git /etc/puppetlabs/code/modules/puppet5
-```
-1. Run the bootstrap script appropriate for your OS and distribution: ```shell
-$ /etc/puppetlabs/code/modules/puppet5/bootstrap/puppet5_bootstrap_rhel
-```
-1. Relog as root to refresh paths and environment
-1. Execute test manifest to verify module: ```bash
-$ puppet apply /etc/puppetlabs/code/modules/puppet5/tests/puppet-agent.pp
-```
+2. Make the directory `/etc/puppetlabs/code/modules`:
+3. Clone this repository (or install it from the [Puppet Forge](https://forge.puppet.com/Aethylred/puppet5)) to `/etc/puppetlabs/code/modules/puppet5`:
 
-## Bootstrap scripts
+    ```shell
+    $ git clone https://github.com/Aethylred/puppet-puppet5.git /etc/puppetlabs/code/modules/puppet5
+    ```
+
+4. Run the bootstrap script appropriate for your OS and distribution:
+
+    ```shell
+    $ /etc/puppetlabs/code/modules/puppet5/bootstrap/puppet5_bootstrap_rhel
+    ```
+
+5. Relog as root to refresh paths and environment
+6. Execute test manifest to verify module:
+
+    ```shell
+    $ puppet apply /etc/puppetlabs/code/modules/puppet5/tests/puppet-agent.pp
+    ```
+
+## Bootstrap Scripts
 
 | OS | Script |
 | --- | --- |
@@ -53,7 +61,7 @@ This module requires the installation of a package repository that provides the 
 
 It is recommended that the class is installed using the following patterns.
 
-## Using the Puppetlabs repositories
+## Using the Puppetlabs Repositories
 
 ```puppet
 class{'puppet5::repos':
@@ -63,7 +71,7 @@ class{'puppet5::repos':
 include puppet5
 ```
 
-## Using a local repository
+## Using a Local Repository
 
 ```puppet
 yumrepo{'local_mirror':
@@ -183,7 +191,7 @@ The current focus is on RedHat/CentOS 7, some `el6` support is included by may n
 - **Windows**: Maybe.
 - **AIX**: No. We don't do that anymore.
 
-## Puppet software
+## Puppet Software
 
 - `puppetdb`: it should configure; puppet-agent, puppetserver and the puppetb. It may be possible to set up `puppet-agent` to use a `puppetdb` service directly in deployments without a `puppetserver`
 - `puppetserver`: it should set up a `puppetserver` that's integrated with a `puppetdb` that can be local or remote, and some kind of dashboard.

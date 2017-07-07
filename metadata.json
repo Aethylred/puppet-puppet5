@@ -1,6 +1,6 @@
 {
      "name": "Aethylred-puppet5",
-     "version": "0.2.2",
+     "version": "0.2.3",
      "author": "Aaron Hicks",
      "license": "Apache-2.0",
      "summary": "A Puppet 5 module to install and manage Puppet 5",
