@@ -17,9 +17,41 @@ A Puppet module to install and manage Puppet v5.x
 This module currently installs and configures the following Puppet software and services:
 - `puppet-agent`
 
+# Bootstrap
+
+This module is written to run on Puppet 5.x, many operating system disributions do not have this package available in their standard package repostitories. The {{bootstrap}} directory contains a collection of bash scripts that will add the Puppetlabs Puppet 5 repositories, install the `puppet-agent` package, install Rubygems, and finally install `librarian-puppet`.
+
+These scripts will need to be run as an administrator, and often they require re-logging to update the bash environment and paths after installation.
+
+Once this bootstrap is completed the module and test scripts should all work.
+
+## Bootstrapping process
+
+1. Login as root
+1. Make the directory {{/etc/puppetlabs/code/modules}}:
+1. Clone this repository to {{/etc/puppetlabs/code/modules/puppet5}}: ```shell
+$ git clone https://github.com/Aethylred/puppet-puppet5.git /etc/puppetlabs/code/modules/puppet5
+```
+1. Run the bootstrap script appropriate for your OS and distribution: ```shell
+$ /etc/puppetlabs/code/modules/puppet5/bootstrap/puppet5_bootstrap_rhel
+```
+1. Relog as root to refresh paths and environment
+1. Execute test manifest to verify module: ```bash
+$ puppet apply /etc/puppetlabs/code/modules/puppet5/tests/puppet-agent.pp
+```
+
+## Bootstrap scripts
+
+| OS | Script |
+| --- | --- |
+| CentOS 5,6,7 | `puppet5_bootstrap_rhel` |
+| RedHat 5,6,7 | `puppet5_bootstrap_rhel` |
+
 # Prerequsites
 
-This module requires a package repository to provide the Puppet v5.x packages. It includes the `puppet5::repos` class to configure the Puppetlabs repositories, however this class is not explicitly required to use this module. It is recommended that the class is installed using the following pattern:
+This module requires the installation of a package repository that provides the Puppet v5.x packages. It includes the `puppet5::repos` class to configure the Puppetlabs repositories, however this class is not explicitly required. Any process that make the packages available via a suitable package provider will do, allowing for the configuration of local mirrors or other alternative repositories for installing Puppet v5.x
+
+It is recommended that the class is installed using the following patterns.
 
 ## Using the Puppetlabs repositories
 
@@ -48,7 +80,7 @@ include puppet5
 
 ## `puppet5`
 
-This wrapper class can be used to install, configure and manage the `puppet-agent` service using a single class declaration. It wrapps the `puppet5::agent::install`, `puppet5::agent::config` and `puppet5::agent::service` classes. All paramters are passed through to the other classes with minimal changes.
+This wrapper class can be used to install, configure and manage the `puppet-agent` service using a single class declaration. It wraps the `puppet5::agent::install`, `puppet5::agent::config` and `puppet5::agent::service` classes. All parameters are passed through to the other classes with minimal changes.
 
 ### Parameters
 
@@ -63,6 +95,10 @@ The version of the package to be installed. The default is provided by Hiera.
 #### [String] ensure
 
 Ensure if the package is `installed` or `absent`, the default is `installed`
+
+#### [String] service
+
+If set to `running` the `puppet-agent` service will be enabled and set to run at boot. If it is set to `stopped` the service will be stopped and disabled. The default is `running`
 
 ## `puppet5::agent::install`
 
@@ -98,7 +134,7 @@ If set to 'present' `puppet.conf` is deployed, if 'absent' it is removed. Defaul
 
 #### [String] server
 
-Sets the FQDN of a puppet server or puppet master. Default leaves this unset.
+Sets the fully qualified domain name, resovable name, or IP address of a puppet server or puppet master. Default leaves this unset.
 
 #### [String] environment
 
@@ -124,7 +160,7 @@ This internal class has no paramters. Used by other classes to check if the `pup
 
 ## `puppet5::repos`
 
-This class installes the Puppetlabs repositories for installing Puppet5. While this module requires a package repostory to provide the Puppet v5.x packages for installation, it should not depend on the Puppetlabs repository. This should allow configuration of local mirrors or other alternative repositories for installing Puppet v5.x
+This class installs the Puppetlabs repositories for installing Puppet5. While this module requires a package repostory to provide the Puppet v5.x packages for installation, it does not depend on the Puppetlabs repository or this class. 
 
 ### Parameters
 
@@ -135,11 +171,17 @@ Many things are defined in Hiera that are not controlled by parameters. These ca
 
 This module is incomplete, however as it already has some functionality around configuring the `puppet-agent` it's suitable for release.
 
-The following software and services are still to be done:
+The following features are still to be done:
 
-## Missing resources
+## Other Operating Systems
 
-- `puppet5::agent::service`: Not done yet, so we get this module on the forge sooner rather than later. For the badges you see...
+The current focus is on RedHat/CentOS 7, some `el6` support is included by may not be complete or thoroughly tested. Other operating systems are being considerd
+
+- **Redhat/CentOS 5**: This module should also be compatible with `el5` once `el6` support is complete
+- **SUSE/OpenSUSE**: We have a use case.
+- **Debian/Ubuntu**: Should be straightforward, will only go back as far as 14.04 LTS.
+- **Windows**: Maybe.
+- **AIX**: No. We don't do that anymore.
 
 ## Puppet software
 
