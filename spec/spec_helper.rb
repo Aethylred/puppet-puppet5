@@ -45,19 +45,19 @@ RSpec.configure do |c|
 
     @puppetdb_package = {
       'redhat-6-x86_64' => {
-        :version => '5.0.0-1.el6',
+        :version => '5.0.1-1.el6',
         :package => 'puppetdb',
       },
       'redhat-7-x86_64' => {
-        :version => '5.0.0-1.el7',
+        :version => '5.0.1-1.el7',
         :package => 'puppetdb',
       },
       'centos-6-x86_64' => {
-        :version => '5.0.0-1.el6',
+        :version => '5.0.1-1.el6',
         :package => 'puppetdb',
       },
       'centos-7-x86_64' => {
-        :version => '5.0.0-1.el7',
+        :version => '5.0.1-1.el7',
         :package => 'puppetdb',
       },
     }

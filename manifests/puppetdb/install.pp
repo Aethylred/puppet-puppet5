@@ -18,6 +18,8 @@ class puppet5::puppetdb::install(
   Variant[Boolean, Enum['installed', 'absent']] $ensure = 'installed',
 ) {
 
+  include puppet5::oscheck
+
   case $ensure {
     true, 'installed': {
       $ensure_package = $version
