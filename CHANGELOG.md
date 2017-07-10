@@ -1,5 +1,5 @@
-# 0.3.0
-- Managed puppetdb
+# 0.X.0
+- Managed puppetdb <- STUCK until puppetlabs-postgresql works with Puppet 5.x
 - Connect agent directly to puppetdb
 - Connect puppetserver to puppetdb
 
