@@ -22,6 +22,3 @@ before_script:
   - bundle exec rake metadata_lint
 script:
   - bundle exec rake spec
-branches:
-  only:
-  - master

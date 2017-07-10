@@ -24,7 +24,7 @@ RSpec.configure do |c|
     end
 
     # Declare variable lookup tables for testing here, so they can be reused across tests
-    @package_details = {
+    @agent_package = {
       'redhat-6-x86_64' => {
         :version => '5.0.0-1.el6',
         :package => 'puppet-agent',
@@ -43,7 +43,26 @@ RSpec.configure do |c|
       },
     }
 
-    @install_directories = {
+    @puppetdb_package = {
+      'redhat-6-x86_64' => {
+        :version => '5.0.0-1.el6',
+        :package => 'puppetdb',
+      },
+      'redhat-7-x86_64' => {
+        :version => '5.0.0-1.el7',
+        :package => 'puppetdb',
+      },
+      'centos-6-x86_64' => {
+        :version => '5.0.0-1.el6',
+        :package => 'puppetdb',
+      },
+      'centos-7-x86_64' => {
+        :version => '5.0.0-1.el7',
+        :package => 'puppetdb',
+      },
+    }
+
+    @agent_directories = {
       :base          => '/etc/puppetlabs',
       :code          => '/etc/puppetlabs/code',
       :mcollective   => '/etc/puppetlabs/mcollective',

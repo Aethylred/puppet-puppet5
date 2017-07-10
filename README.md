@@ -172,8 +172,22 @@ This class installs the Puppetlabs repositories for installing Puppet5. While th
 
 ### Parameters
 
+#### [Boolean] sources
+
+If set to true the Puppet5 source repository will also be installed. Default is false.
+
 # Hiera
 Many things are defined in Hiera that are not controlled by parameters. These can be over-ridden in a Hiera datastore on the local machine or Puppet server. Check the `data` directory for defaults.
+
+# Prior Work
+
+This is a rework of a previous puppet-puppet module for Puppet 5.x, however Puppet 5 included several substatntial changes including types, type conversion, separated config files, and using Hiera to act as a keystore within Puppet modules. The last of those is significant as it removes the need for a `params.pp` to store variables.
+
+# Other modules
+
+## PuppetDB
+
+This module should be compatible with the [Puppetlabs PuppetDB module](https://forge.puppet.com/puppetlabs/puppetdb). However the intention of this module was to have a fully integrated legacy free installation of Puppet 5.x.
 
 # To Do
 
