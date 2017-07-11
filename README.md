@@ -189,6 +189,11 @@ This is a rework of a previous puppet-puppet module for Puppet 5.x, however Pupp
 
 This module should be compatible with the [Puppetlabs PuppetDB module](https://forge.puppet.com/puppetlabs/puppetdb). However the intention of this module was to have a fully integrated legacy free installation of Puppet 5.x.
 
+# Attributions
+
+## puppet5-blank
+This module was based on [puppet5-blank](https://github.com/Aethylred/puppet5-blank), a Puppet 5.x module template created by [Aethylred](https://github.com/Aethylred)
+
 # To Do
 
 This module is incomplete, however as it already has some functionality around configuring the `puppet-agent` it's suitable for release.

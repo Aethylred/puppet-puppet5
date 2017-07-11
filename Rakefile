@@ -22,4 +22,12 @@ task :check_line_endings do
   end
 end
 
+desc 'Check Hiera YAML format'
+task :validate_yaml do
+  yaml_parse_command = 'yaml-lint'
+  Dir['travis.yml','hiera.yaml','data/**/*.yaml','data/**/*.yml'].each do |path|
+   sh "#{yaml_parse_command} #{path}"
+  end
+end
+
 task :integration => [:syntax, :lint, :metadata_lint, :spec]
